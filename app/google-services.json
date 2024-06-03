@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "135333761972",
+    "project_id": "jobinterview-79656",
+    "storage_bucket": "jobinterview-79656.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135333761972:android:5a1ca8ee75658ec37d98e1",
+        "android_client_info": {
+          "package_name": "com.example.jila"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-nVNuBvJlAU2JAvp2sriVvGyGsQgVu-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
