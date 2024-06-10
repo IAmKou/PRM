@@ -32,14 +32,22 @@ CREATE TABLE Quiz (
     FOREIGN KEY (creator_id) REFERENCES User(user_id)
 );
 
+-- Create report_type tabel
+CREATE TABLE Report_type ( 
+type_id int primary key,
+text varchar(50)
+);
+
 -- Create Report table
 CREATE TABLE Report (
     report_id INT PRIMARY KEY AUTO_INCREMENT,
     time DATETIME NOT NULL,
     reporter INT,
     quiz_id INT,
+    report_text INT,
     FOREIGN KEY (reporter) REFERENCES User(user_id),
-    FOREIGN KEY (quiz_id) REFERENCES Quiz(quiz_id)
+    FOREIGN KEY (quiz_id) REFERENCES Quiz(quiz_id),
+    foreign key (report_text) references Report_type(type_id)
 );
 
 -- Create Class table
