@@ -1,6 +1,6 @@
 package com.example.jila.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Report {
     private int report_id;
