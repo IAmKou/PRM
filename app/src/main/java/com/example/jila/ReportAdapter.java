@@ -1,4 +1,4 @@
-package com.example.jila.Adapter;
+package com.example.jila;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.jila.R;
-import com.example.jila.model.Report;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

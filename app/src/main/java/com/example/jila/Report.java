@@ -1,4 +1,4 @@
-package com.example.jila.model;
+package com.example.jila;
 
 import java.util.Date;
 
