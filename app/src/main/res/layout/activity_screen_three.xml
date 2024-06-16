@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="And we are done..."
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose type of exercise"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp" />
+
+    <GridLayout
+        android:id="@+id/gridLayoutExercises"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="3"
+        android:columnCount="3"
+        android:layout_marginTop="16dp">
+
+        <!-- Add buttons or text views for each exercise type here -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Yoga"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Gym"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp" />
+
+        <!-- Add more buttons as needed -->
+    </GridLayout>
+
+    <Button
+        android:id="@+id/buttonFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Finish"
+        android:layout_gravity="end"
+        android:layout_marginTop="24dp" />
+</LinearLayout>
