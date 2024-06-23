@@ -8,7 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.Timestamp;
+
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -19,7 +22,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     public ReportAdapter(List<Report> reportList) {
         this.reportList = reportList;
-        this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
     }
 
     @NonNull
@@ -33,12 +36,16 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
         Report report = reportList.get(position);
         holder.reportId.setText(String.valueOf(report.getReport_id()));
-        holder.reportDate.setText(dateFormat.format(report.getReport_time()));
-        holder.reporter.setText(String.valueOf(report.getReporter()));
-        holder.quizId.setText(String.valueOf(report.getQuiz_id()));
-        holder.reportText.setText(String.valueOf(report.getReport_text()));
-    }
 
+        // Convert Timestamp to Date and format it
+        Timestamp timestamp = report.getReport_time();
+        Date date = timestamp.toDate();
+        holder.reportDate.setText(dateFormat.format(date));
+
+        holder.reporter.setText(report.getReporter());
+        holder.quizId.setText(String.valueOf(report.getQuiz_id()));
+        holder.reportText.setText(report.getReport_type());
+    }
     @Override
     public int getItemCount() {
         return reportList.size();
@@ -58,7 +65,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
             reportDate = itemView.findViewById(R.id.textViewReportDate);
             reporter = itemView.findViewById(R.id.textViewReporter);
             quizId = itemView.findViewById(R.id.textViewQuizId);
-            reportText = itemView.findViewById(R.id.textViewReportText);
+            reportText = itemView.findViewById(R.id.textViewReportText); // Initialize the reportText TextView
         }
     }
 }
