@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Example layout for quiz screen -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Who are you"
+        android:padding="16dp"
+        android:textSize="18sp"/>
+
+    <RadioGroup
+        android:id="@+id/answersRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <RadioButton
+            android:id="@+id/radioMorning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lord Trashcan" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"/>
+
+</LinearLayout>
