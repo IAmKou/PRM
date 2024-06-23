@@ -1,59 +1,61 @@
 package com.example.jila;
 //alo
+import com.google.firebase.Timestamp;
+
 import java.util.Date;
 
 public class Report {
-    private int report_id;
-    private Date report_time;
-    private int reporter;
-    private int quiz_id;
-    private int report_text;
+    private Long report_id;
+    private Timestamp report_time;
+    private String reporter;
+    private Long quiz_id;
+    private String report_type;
 
-    public Report(int report_id, Date report_time, int reporter, int quiz_id, int report_text){
+    public Report(Long report_id, Timestamp report_time, String reporter, Long quiz_id,  String report_type) {
         this.report_id = report_id;
         this.report_time = report_time;
         this.reporter = reporter;
         this.quiz_id = quiz_id;
-        this.report_text = report_text;
+        this.report_type = report_type;
     }
 
-    public int getReport_id() {
+    public void setReport_id(Long report_id) {
+        this.report_id = report_id;
+    }
+
+    public void setReport_time(Timestamp report_time) {
+        this.report_time = report_time;
+    }
+
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
+    }
+
+    public void setQuiz_id(Long quiz_id) {
+        this.quiz_id = quiz_id;
+    }
+
+    public void setReport_type(String report_type) {
+        this.report_type = report_type;
+    }
+
+    public Long getReport_id() {
         return report_id;
     }
 
-    public void setReport_id(int report_id) {
-        this.report_id = report_id;
-    }
-
-    public Date getReport_time() {
+    public Timestamp getReport_time() {
         return report_time;
     }
 
-    public void setReport_time(Date report_time) {
-        this.report_time = report_time;
-    }
-
-    public int getReporter() {
+    public String getReporter() {
         return reporter;
     }
 
-    public void setReporter(int reporter) {
-        this.reporter = reporter;
-    }
-
-    public int getQuiz_id() {
+    public Long getQuiz_id() {
         return quiz_id;
     }
 
-    public void setQuiz_id(int quiz_id) {
-        this.quiz_id = quiz_id;
-    }
-
-    public int getReport_text() {
-        return report_text;
-    }
-
-    public void setReport_text(int report_text) {
-        this.report_text = report_text;
+    public String getReport_type() {
+        return report_type;
     }
 }
