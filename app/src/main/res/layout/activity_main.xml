@@ -59,4 +59,16 @@
         android:text="Next"
         android:layout_gravity="end"
         android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
+        android:text="Test" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:text="To report list" />
 </LinearLayout>
