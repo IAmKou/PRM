@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import model.Report;
+
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
 
     private List<Report> reportList;
@@ -50,7 +52,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         holder.actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ReportDetail.class);
+                Intent intent = new Intent(v.getContext(), ReportDetailActivity.class);
                 // Pass necessary data to the ReportDetail activity
                 intent.putExtra("report_id", report.getReport_id());
                 intent.putExtra("report_time", dateFormat.format(date));
