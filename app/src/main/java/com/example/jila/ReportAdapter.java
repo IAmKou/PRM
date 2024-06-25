@@ -1,8 +1,10 @@
 package com.example.jila;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,6 +47,19 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         holder.reporter.setText(report.getReporter());
         holder.quizId.setText(String.valueOf(report.getQuiz_id()));
         holder.reportText.setText(report.getReport_type());
+        holder.actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ReportDetail.class);
+                // Pass necessary data to the ReportDetail activity
+                intent.putExtra("report_id", report.getReport_id());
+                intent.putExtra("report_time", dateFormat.format(date));
+                intent.putExtra("reporter", report.getReporter());
+                intent.putExtra("quiz_id", report.getQuiz_id());
+                intent.putExtra("report_type", report.getReport_type());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -58,14 +73,17 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         TextView reporter;
         TextView quizId;
         TextView reportText;
+        Button actionButton;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
+
             reportId = itemView.findViewById(R.id.textViewReportId);
             reportDate = itemView.findViewById(R.id.textViewReportDate);
             reporter = itemView.findViewById(R.id.textViewReporter);
             quizId = itemView.findViewById(R.id.textViewQuizId);
-            reportText = itemView.findViewById(R.id.textViewReportText); // Initialize the reportText TextView
+            reportText = itemView.findViewById(R.id.textViewReportText);
+            actionButton = itemView.findViewById(R.id.btn);
         }
     }
 }
