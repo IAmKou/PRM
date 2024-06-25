@@ -35,4 +35,10 @@
         android:layout_height="wrap_content"
         android:text="Report Text" />
 
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:text="View detail" />
+
 </LinearLayout>
