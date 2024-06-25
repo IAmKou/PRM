@@ -25,11 +25,12 @@ public class ForgetActivity extends AppCompatActivity {
     ActivityForgetBinding binding;
     FirebaseAuth auth;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       binding = ActivityForgetBinding.inflate(getLayoutInflater());
-       setContentView(binding.getRoot());
+        binding = ActivityForgetBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -42,36 +43,36 @@ public class ForgetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = binding.editEmailAddress.getText().toString();
                 progressDialog.dismiss();
-                if (email.isEmpty()){
+                if (email.isEmpty()) {
 
                     binding.editEmailAddress.setError("Enter Your Email");
-                }else{
+                } else {
 
-                auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                    auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
 
-                        progressDialog.dismiss();
-                            Toast.makeText(ForgetActivity.this, "Please Check Your Email", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(ForgetActivity.this, LoginActivity.class));
-                        }else{
+                                progressDialog.dismiss();
+                                Toast.makeText(ForgetActivity.this, "Please Check Your Email", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(ForgetActivity.this, LoginActivity.class));
+                            } else {
 
-                            progressDialog.dismiss();
-                            Toast.makeText(ForgetActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                Toast.makeText(ForgetActivity.this, "Invalid Email! Please Check Again.", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
 
                 }
             }
         });
 
-       binding.login.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               startActivity(new Intent(ForgetActivity.this, LoginActivity.class));
-           }
-       });
+        binding.login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ForgetActivity.this, LoginActivity.class));
+            }
+        });
     }
 }

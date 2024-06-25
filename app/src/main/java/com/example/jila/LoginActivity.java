@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseFirestore firestore;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
 
             }
         });
@@ -54,35 +55,35 @@ public class LoginActivity extends AppCompatActivity {
                 String password = binding.editpassword.getText().toString();
 
 
-                if(email.isEmpty()){
+                if (email.isEmpty()) {
 
                     binding.editEmailAddress.setError("Enter Your Email");
                 } else if (password.isEmpty()) {
 
                     binding.editpassword.setError("Enter Your Password");
 
-                }else{
+                } else {
 
-                progressDialog.show();
+                    progressDialog.show();
 
-                auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isSuccessful()){
+                            if (task.isSuccessful()) {
 
-                        progressDialog.dismiss();
+                                progressDialog.dismiss();
 
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                        finish();
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
 
-                        }else{
-                            progressDialog.dismiss();
-                            Toast.makeText(LoginActivity.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                            } else {
+                                progressDialog.dismiss();
+                                Toast.makeText(LoginActivity.this, "Account or password is incorrect !", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
-
-                    }
-                });
+                    });
 
                 }
 
@@ -94,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(LoginActivity.this,ForgetActivity.class));
+                startActivity(new Intent(LoginActivity.this, ForgetActivity.class));
 
 
             }
