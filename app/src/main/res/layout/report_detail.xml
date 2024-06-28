@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/rid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report ID" />
+
+    <TextView
+        android:id="@+id/rt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report Time" />
+
+    <TextView
+        android:id="@+id/reid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reporter" />
+
+    <TextView
+        android:id="@+id/qid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz ID" />
+
+    <TextView
+        android:id="@+id/tid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report Type" />
+
+</LinearLayout>

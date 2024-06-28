@@ -1,8 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\app",
+    "\\app\\src",
+    "\\app\\src\\androidTest",
+    "\\app\\src\\main",
+    "\\app\\src\\main\\java",
+    "\\app\\src\\main\\java\\com",
+    "\\app\\src\\main\\java\\com\\example",
+    "\\app\\src\\main\\java\\com\\example\\jila",
     "\\nodemon"
   ],
-  "SelectedNode": "\\nodemon",
+  "SelectedNode": "\\app\\src\\main\\java\\com\\example\\jila\\MainActivity.java",
   "PreviewInSolutionExplorer": false
 }

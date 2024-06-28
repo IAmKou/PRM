@@ -34,11 +34,10 @@ android {
 
 dependencies {
         // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
-    implementation("com.google.firebase:firebase-firestore")
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
         // Add the dependency for the Realtime Database library
         // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -48,4 +47,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }
