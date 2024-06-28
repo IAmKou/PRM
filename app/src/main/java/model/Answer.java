@@ -4,13 +4,12 @@ public class Answer {
     private Long answer_id;
     private String answer_text;
     private boolean is_correct;
-    private Long question_id;
 
-    public Answer(Long answer_id, String answer_text, boolean is_correct, Long question_id) {
+
+    public Answer(Long answer_id, String answer_text, boolean is_correct) {
         this.answer_id = answer_id;
         this.answer_text = answer_text;
         this.is_correct = is_correct;
-        this.question_id = question_id;
     }
 
     public Long getAnswer_id() {
@@ -37,11 +36,4 @@ public class Answer {
         this.is_correct = is_correct;
     }
 
-    public Long getQuestion_id() {
-        return question_id;
-    }
-
-    public void setQuestion_id(Long question_id) {
-        this.question_id = question_id;
-    }
 }
