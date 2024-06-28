@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/questionText"
+        android:layout_width="377dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="8dp"
+        android:inputType="text"
+        android:hint="Question"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/answer1"
+        android:layout_width="377dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="8dp"
+        android:inputType="text"
+        android:hint="Answer 1" />
+
+    <EditText
+        android:id="@+id/answer2"
+        android:layout_width="380dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="8dp"
+        android:inputType="text"
+        android:hint="Answer 2" />
+
+    <EditText
+        android:id="@+id/answer3"
+        android:layout_width="380dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="8dp"
+        android:inputType="text"
+        android:hint="Answer 3" />
+
+    <EditText
+        android:id="@+id/answer4"
+        android:layout_width="380dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="8dp"
+        android:inputType="text"
+        android:hint="Answer 4" />
+
+    <RadioGroup
+        android:id="@+id/correctAnswerGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/correctAnswer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correct Answer 1" />
+
+        <RadioButton
+            android:id="@+id/correctAnswer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correct Answer 2" />
+
+        <RadioButton
+            android:id="@+id/correctAnswer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correct Answer 3" />
+
+        <RadioButton
+            android:id="@+id/correctAnswer4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correct Answer 4" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/addQuestionDialogButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="Add Question" />
+</LinearLayout>
