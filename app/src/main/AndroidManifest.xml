@@ -19,6 +19,12 @@
             android:name=".CreateQuizActivity"
             android:exported="false" />
         <activity
+            android:name=".QuizActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ScreenThreeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity

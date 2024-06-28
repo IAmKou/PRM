@@ -13,17 +13,25 @@
         android:padding="16dp"/>
 
     <RadioGroup
-        android:id="@+id/optionsGroup"
+        android:id="@+id/answerGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/correctAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correct Answer:"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:enabled="false"
         android:layout_marginTop="16dp"/>
 </LinearLayout>

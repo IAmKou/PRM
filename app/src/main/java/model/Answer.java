@@ -10,6 +10,7 @@ public class Answer {
         this.answer_id = answer_id;
         this.answer_text = answer_text;
         this.is_correct = is_correct;
+
     }
 
     public Long getAnswer_id() {

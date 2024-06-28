@@ -7,10 +7,12 @@ public class Question {
     private Long question_id;
     private List<Answer> answers;
 
-    public Question(String question, Long question_id, List<Answer> quiz_id) {
+
+    public Question(String question, Long question_id, List<Answer> answers) {
         this.question = question;
         this.question_id = question_id;
-        this.answers = quiz_id;
+        this.answers = answers;
+
     }
 
     public String getQuestion() {
