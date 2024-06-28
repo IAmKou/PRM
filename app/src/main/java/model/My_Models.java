@@ -1,4 +1,4 @@
-package com.example.jila.Models;
+package model;
 
 public class My_Models {
 
