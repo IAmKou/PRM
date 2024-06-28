@@ -1,14 +1,16 @@
 package model;
 
+import java.util.List;
+
 public class Question {
     private String question;
     private Long question_id;
-    private Long quiz_id;
+    private List<Answer> answers;
 
-    public Question(String question, Long question_id, Long quiz_id) {
+    public Question(String question, Long question_id, List<Answer> quiz_id) {
         this.question = question;
         this.question_id = question_id;
-        this.quiz_id = quiz_id;
+        this.answers = quiz_id;
     }
 
     public String getQuestion() {
@@ -27,11 +29,11 @@ public class Question {
         this.question_id = question_id;
     }
 
-    public Long getQuiz_id() {
-        return quiz_id;
+    public List<Answer> getAnswers() {
+        return answers;
     }
 
-    public void setQuiz_id(Long quiz_id) {
-        this.quiz_id = quiz_id;
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 }
