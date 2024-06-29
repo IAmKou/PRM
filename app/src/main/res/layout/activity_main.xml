@@ -5,60 +5,29 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textViewTitle"
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Let's Start..."
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textViewQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your favorite time to workout?"
-        android:layout_marginTop="16dp"
-        android:textSize="18sp" />
-
-    <RadioGroup
-        android:id="@+id/radioGroupTimes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp">
-
-        <RadioButton
-            android:id="@+id/radioMorning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dawn" />
-
-        <RadioButton
-            android:id="@+id/radioPreWork"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pre Work" />
-
-        <RadioButton
-            android:id="@+id/radioPostWork"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Post Work" />
-
-        <RadioButton
-            android:id="@+id/radioNight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Midnight" />
-    </RadioGroup>
+        android:text="Exam"
+        android:onClick="openExam" />
 
     <Button
-        android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:layout_gravity="end"
-        android:layout_marginTop="24dp" />
+        android:text="Quiz List"
+        android:onClick="openQuizList" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Learning"
+        android:onClick="openLearning" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User List"
+        android:onClick="openUserList" />
 
     <Button
         android:id="@+id/btn1"

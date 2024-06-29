@@ -19,15 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Button buttonNext = findViewById(R.id.buttonNext);
         Button b = findViewById(R.id.btn2);
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ScreenTwoActivity.class);
-                startActivity(intent);
-            }
-        });
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,5 +30,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+    public void openExam(View view) {
+        startActivity(new Intent(this, ExamActivity.class));
+    }
+
+    public void openQuizList(View view) {
+        startActivity(new Intent(this, QuizListActivity.class));
+    }
+
+    public void openLearning(View view) {
+        startActivity(new Intent(this, LearningActivity.class));
+    }
+
+    public void openUserList(View view) {
+        startActivity(new Intent(this, UserListActivity.class));
     }
 }
