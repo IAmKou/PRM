@@ -6,33 +6,31 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/rid"
-        android:layout_width="wrap_content"
+        android:id="@+id/reporter"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Report ID" />
+        android:text="Reporter"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/rt"
-        android:layout_width="wrap_content"
+        android:id="@+id/type_id"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Report Time" />
+        android:text="Type"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/reid"
-        android:layout_width="wrap_content"
+        android:id="@+id/quiz_id"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reporter" />
+        android:text="Quiz"
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/qid"
-        android:layout_width="wrap_content"
+        android:id="@+id/report_time"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quiz ID" />
-
-    <TextView
-        android:id="@+id/tid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Report Type" />
+        android:text="Time"
+        android:textSize="18sp" />
 
 </LinearLayout>
