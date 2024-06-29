@@ -22,7 +22,7 @@
             android:name=".QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".ScreenThreeActivity"
+            android:name=".QuizAdapter"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -42,7 +42,17 @@
             android:name=".ForgetActivity"
             android:exported="false" />
         <activity
-            android:name=".ChangeActivity"
+            android:name=".UserListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LearningActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuizListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExamActivity"
+
             android:exported="false" />
         <activity
             android:name=".ReportListActivity"
