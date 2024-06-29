@@ -10,23 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.Timestamp;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import model.Report;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
-
-    private List<Report> reportList;
-    private SimpleDateFormat dateFormat;
+    private static List<Report> reportList;
 
     public ReportAdapter(List<Report> reportList) {
         this.reportList = reportList;
-        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
     }
 
     @NonNull
@@ -39,53 +31,50 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     @Override
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
         Report report = reportList.get(position);
-        holder.reportId.setText(String.valueOf(report.getReport_id()));
-
-        // Convert Timestamp to Date and format it
-        Timestamp timestamp = report.getReport_time();
-        Date date = timestamp.toDate();
-        holder.reportDate.setText(dateFormat.format(date));
-
-        holder.reporter.setText(report.getReporter());
-        holder.quizId.setText(String.valueOf(report.getQuiz_id()));
-        holder.reportText.setText(report.getReport_type());
-        holder.actionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ReportDetailActivity.class);
-                // Pass necessary data to the ReportDetail activity
-                intent.putExtra("report_id", report.getReport_id());
-                intent.putExtra("report_time", dateFormat.format(date));
-                intent.putExtra("reporter", report.getReporter());
-                intent.putExtra("quiz_id", report.getQuiz_id());
-                intent.putExtra("report_type", report.getReport_type());
-                v.getContext().startActivity(intent);
-            }
-        });
+        holder.bind(report);
     }
+
     @Override
     public int getItemCount() {
         return reportList.size();
     }
 
-    static class ReportViewHolder extends RecyclerView.ViewHolder {
-
-        TextView reportId;
-        TextView reportDate;
-        TextView reporter;
-        TextView quizId;
-        TextView reportText;
-        Button actionButton;
+    public static class ReportViewHolder extends RecyclerView.ViewHolder {
+        private TextView reporterTextView;
+        private TextView typeIdTextView;
+        private TextView quizIdTextView;
+        private TextView reportTimeTextView;
+        private Button button;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
+            reporterTextView = itemView.findViewById(R.id.reporter);
+            typeIdTextView = itemView.findViewById(R.id.type_id);
+            quizIdTextView = itemView.findViewById(R.id.quiz_id);
+            reportTimeTextView = itemView.findViewById(R.id.report_time);
+            button = itemView.findViewById(R.id.button);
 
-            reportId = itemView.findViewById(R.id.textViewReportId);
-            reportDate = itemView.findViewById(R.id.textViewReportDate);
-            reporter = itemView.findViewById(R.id.textViewReporter);
-            quizId = itemView.findViewById(R.id.textViewQuizId);
-            reportText = itemView.findViewById(R.id.textViewReportText);
-            actionButton = itemView.findViewById(R.id.btn);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Report report = reportList.get(position);
+                        Intent intent = new Intent(v.getContext(), ReportDetailActivity.class);
+                        intent.putExtra(ReportDetailActivity.EXTRA_REPORT, report);
+                        v.getContext().startActivity(intent);
+                    }
+                }
+            });
+        }
+
+        public void bind(Report report) {
+            reporterTextView.setText(report.getReporter());
+            typeIdTextView.setText(report.getTypeName());
+            quizIdTextView.setText(report.getQuizName());
+            reportTimeTextView.setText(report.getReport_time().toDate().toString());
         }
     }
+
 }
+
