@@ -3,42 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/textViewReportId"
-        android:layout_width="wrap_content"
+        android:id="@+id/reporter"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Report ID" />
+        android:text="Reporter"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textViewReportDate"
-        android:layout_width="wrap_content"
+        android:id="@+id/type_id"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Report Date" />
+        android:text="Type"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textViewReporter"
-        android:layout_width="wrap_content"
+        android:id="@+id/quiz_id"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reporter" />
+        android:text="Quiz"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textViewQuizId"
-        android:layout_width="wrap_content"
+        android:id="@+id/report_time"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quiz ID" />
-
-    <TextView
-        android:id="@+id/textViewReportText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Report Text" />
+        android:text="Time"
+        android:textSize="16sp" />
 
     <Button
-        android:id="@+id/btn"
-        android:layout_width="105dp"
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View detail" />
-
+        android:text="View Details" />
 </LinearLayout>
