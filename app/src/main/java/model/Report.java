@@ -1,47 +1,41 @@
 package model;
-//alo
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.Timestamp;
 
-import java.util.Date;
-
-public class Report {
-    private Long report_id;
+public class Report implements Parcelable {
     private Timestamp report_time;
     private String reporter;
-    private Long quiz_id;
-    private String report_type;
+    private String typeName;
+    private String quizName;
 
-    public Report(Long report_id, Timestamp report_time, String reporter, Long quiz_id,  String report_type) {
-        this.report_id = report_id;
+    public Report(Timestamp report_time, String reporter, String typeName, String quizName) {
         this.report_time = report_time;
         this.reporter = reporter;
-        this.quiz_id = quiz_id;
-        this.report_type = report_type;
+        this.typeName = typeName;
+        this.quizName = quizName;
     }
 
-    public void setReport_id(Long report_id) {
-        this.report_id = report_id;
+    protected Report(Parcel in) {
+        report_time = in.readParcelable(Timestamp.class.getClassLoader());
+        reporter = in.readString();
+        typeName = in.readString();
+        quizName = in.readString();
     }
 
-    public void setReport_time(Timestamp report_time) {
-        this.report_time = report_time;
-    }
+    public static final Creator<Report> CREATOR = new Creator<Report>() {
+        @Override
+        public Report createFromParcel(Parcel in) {
+            return new Report(in);
+        }
 
-    public void setReporter(String reporter) {
-        this.reporter = reporter;
-    }
-
-    public void setQuiz_id(Long quiz_id) {
-        this.quiz_id = quiz_id;
-    }
-
-    public void setReport_type(String report_type) {
-        this.report_type = report_type;
-    }
-
-    public Long getReport_id() {
-        return report_id;
-    }
+        @Override
+        public Report[] newArray(int size) {
+            return new Report[size];
+        }
+    };
 
     public Timestamp getReport_time() {
         return report_time;
@@ -51,11 +45,24 @@ public class Report {
         return reporter;
     }
 
-    public Long getQuiz_id() {
-        return quiz_id;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public String getReport_type() {
-        return report_type;
+    public String getQuizName() {
+        return quizName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(report_time, flags);
+        dest.writeString(reporter);
+        dest.writeString(typeName);
+        dest.writeString(quizName);
     }
 }
