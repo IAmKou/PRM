@@ -47,6 +47,9 @@
         <activity
             android:name=".ReportListActivity"
             android:exported="false" />
+        <activity
+            android:name=".ReportDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
