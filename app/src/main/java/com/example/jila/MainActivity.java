@@ -74,4 +74,7 @@ public class MainActivity extends AppCompatActivity {
     public void openUserList(View view) {
         startActivity(new Intent(this, UserListActivity.class));
     }
+
+
 }
+
