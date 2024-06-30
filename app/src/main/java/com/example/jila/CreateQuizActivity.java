@@ -15,7 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -113,45 +117,61 @@ public class CreateQuizActivity extends AppCompatActivity {
     }
 
     private void saveQuiz() {
-        String quizTitle = quizTitleEditText.getText().toString().trim();
-        if (quizTitle.isEmpty()) {
-            Toast.makeText(this, "Quiz title is required", Toast.LENGTH_SHORT).show();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Toast.makeText(this, "Failed to get user details", Toast.LENGTH_SHORT).show();
             return;
         }
+        String userId = user.getUid();
+        DocumentReference userRef = db.collection("users").document(userId);
 
-        // Save the quiz
-        CollectionReference quizRef = db.collection("quiz");
-        Map<String, Object> quizData = new HashMap<>();
-        quizData.put("title", quizTitle);
+        userRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && task.getResult() != null) {
+                DocumentSnapshot document = task.getResult();
+                String username = document.getString("name");
 
-        quizRef.add(quizData).addOnSuccessListener(documentReference -> {
-            String quizId = documentReference.getId();
+                String quizTitle = quizTitleEditText.getText().toString().trim();
+                if (quizTitle.isEmpty()) {
+                    Toast.makeText(this, "Quiz title is required", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-            // Save the questions
-            for (Question question : questionList) {
-                CollectionReference questionRef = db.collection("question");
-                Map<String, Object> questionData = new HashMap<>();
-                questionData.put("questionText", question.getQuestion());
-                questionData.put("quizId", db.document("quiz/" + quizId));
+                // Save the quiz
+                CollectionReference quizRef = db.collection("quiz");
+                Map<String, Object> quizData = new HashMap<>();
+                quizData.put("title", quizTitle);
+                quizData.put("createdBy", username);
 
-                questionRef.add(questionData).addOnSuccessListener(questionDocRef -> {
-                    String questionId = questionDocRef.getId();
+                quizRef.add(quizData).addOnSuccessListener(documentReference -> {
+                    String quizId = documentReference.getId();
 
-                    // Save the answers
-                    for (Answer answer : question.getAnswers()) {
-                        CollectionReference answerRef = db.collection("answer");
-                        Map<String, Object> answerData = new HashMap<>();
-                        answerData.put("answerText", answer.getAnswer_text());
-                        answerData.put("isCorrect", answer.isIs_correct());
-                        answerData.put("questionId", db.document("question/" + questionId));
+                    // Save the questions
+                    for (Question question : questionList) {
+                        CollectionReference questionRef = db.collection("question");
+                        Map<String, Object> questionData = new HashMap<>();
+                        questionData.put("questionText", question.getQuestion());
+                        questionData.put("quizId", db.document("quiz/" + quizId));
 
-                        answerRef.add(answerData);
+                        questionRef.add(questionData).addOnSuccessListener(questionDocRef -> {
+                            String questionId = questionDocRef.getId();
+
+                            // Save the answers
+                            for (Answer answer : question.getAnswers()) {
+                                CollectionReference answerRef = db.collection("answer");
+                                Map<String, Object> answerData = new HashMap<>();
+                                answerData.put("answerText", answer.getAnswer_text());
+                                answerData.put("isCorrect", answer.isIs_correct());
+                                answerData.put("questionId", db.document("question/" + questionId));
+
+                                answerRef.add(answerData);
+                            }
+                        });
                     }
+
+                    Toast.makeText(this, "Quiz saved successfully", Toast.LENGTH_SHORT).show();
+                    finish();
                 });
             }
-
-            Toast.makeText(this, "Quiz saved successfully", Toast.LENGTH_SHORT).show();
-            finish();
         });
     }
 }

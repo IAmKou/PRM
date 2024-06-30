@@ -1,5 +1,6 @@
 package com.example.jila;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView questionTextView;
     private RadioGroup answerGroup;
     private Button nextButton;
+    private Button finishButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class QuizActivity extends AppCompatActivity {
         questionTextView = findViewById(R.id.questionText);
         answerGroup = findViewById(R.id.answerGroup);
         nextButton = findViewById(R.id.nextButton);
+        finishButton = findViewById(R.id.finishButton);
 
         // Initialize Firebase Firestore
         db = FirebaseFirestore.getInstance();
@@ -55,9 +58,20 @@ public class QuizActivity extends AppCompatActivity {
                     showNextQuestion();
                 } else {
                     Toast.makeText(QuizActivity.this, "Quiz Completed", Toast.LENGTH_SHORT).show();
+                    nextButton.setVisibility(View.GONE);
+                    finishButton.setVisibility(View.VISIBLE);
                 }
             }
         });
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuizActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     private void loadQuiz() {
