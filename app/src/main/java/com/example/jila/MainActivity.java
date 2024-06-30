@@ -4,14 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.example.jila.databinding.ActivityChangeBinding;
 import com.example.jila.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,25 +20,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
-        Button b1 = findViewById(R.id.button);
-        Button b2 = findViewById(R.id.button2);
-        Button b3 = findViewById(R.id.button3);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        binding.changePass.setOnClickListener(new View.OnClickListener() {
+        Button b1 = findViewById(R.id.button);
+        Button b2 = findViewById(R.id.btn2);
+        Button b3 = findViewById(R.id.button3);
+        Button changePassButton = findViewById(R.id.changePass);
+
+        changePassButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(MainActivity.this, ChangeActivity.class));
-
             }
         });
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ReportListActivity.class);
+                Intent intent = new Intent(MainActivity.this, ReportListActivity.class);
                 startActivity(intent);
             }
         });
+
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +57,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void openExam(View view) {
+        startActivity(new Intent(this, ExamActivity.class));
+    }
+
+    public void openQuizList(View view) {
+        startActivity(new Intent(this, QuizListActivity.class));
+    }
+
+    public void openLearning(View view) {
+        startActivity(new Intent(this, LearningActivity.class));
+    }
+
+    public void openUserList(View view) {
+        startActivity(new Intent(this, UserListActivity.class));
+    }
+
 
 }
-}
+
