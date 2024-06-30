@@ -4,22 +4,34 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.Answer;
 import model.Question;
@@ -33,50 +45,65 @@ public class QuizActivity extends AppCompatActivity {
     private RadioGroup answerGroup;
     private Button nextButton;
     private Button finishButton;
+    private Button reportButton;
+
+    private String currentQuizTitle; // Variable to hold the current quiz title
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_screen);
-        Log.d("QuizActivity", "go to onCreate");
+        Log.d("QuizActivity", "onCreate called");
 
         questionTextView = findViewById(R.id.questionText);
         answerGroup = findViewById(R.id.answerGroup);
         nextButton = findViewById(R.id.nextButton);
         finishButton = findViewById(R.id.finishButton);
+        reportButton = findViewById(R.id.reportButton);
 
-        // Initialize Firebase Firestore
+
         db = FirebaseFirestore.getInstance();
+
 
         loadQuiz();
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (currentQuestionIndex < questionList.size() - 1) {
-                    currentQuestionIndex++;
-                    showNextQuestion();
-                } else {
-                    Toast.makeText(QuizActivity.this, "Quiz Completed", Toast.LENGTH_SHORT).show();
-                    nextButton.setVisibility(View.GONE);
-                    finishButton.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        finishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(QuizActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+        nextButton.setOnClickListener(v -> {
+            if (currentQuestionIndex < questionList.size() - 1) {
+                currentQuestionIndex++;
+                showNextQuestion();
+            } else {
+                Toast.makeText(QuizActivity.this, "Quiz Completed", Toast.LENGTH_SHORT).show();
+                nextButton.setVisibility(View.GONE);
+                finishButton.setVisibility(View.VISIBLE);
             }
         });
 
+        finishButton.setOnClickListener(v -> {
+            Intent intent = new Intent(QuizActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        reportButton.setOnClickListener(v -> {
+            showReportDialog();
+        });
     }
 
     private void loadQuiz() {
         // Hardcoding quizId
         String quizId = "XeydVVPwCG6hxLIKKWRa";
+
+        CollectionReference quizRef = db.collection("quiz");
+        quizRef.document(quizId).get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                currentQuizTitle = documentSnapshot.getString("title");
+            } else {
+                Toast.makeText(this, "Quiz not found", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(e -> {
+            Toast.makeText(this, "Failed to load quiz", Toast.LENGTH_SHORT).show();
+            Log.e("QuizActivity", "Error loading quiz", e);
+        });
 
         CollectionReference questionRef = db.collection("question");
         questionRef.whereEqualTo("quizId", db.document("quiz/" + quizId)).get().addOnCompleteListener(task -> {
@@ -129,5 +156,65 @@ public class QuizActivity extends AppCompatActivity {
             }
             answerGroup.addView(radioButton);
         }
+    }
+
+    private void showReportDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.report_dialog, null);
+        builder.setView(dialogView);
+
+        Spinner reportSpinner = dialogView.findViewById(R.id.reportSpinner);
+        Button submitReportButton = dialogView.findViewById(R.id.submitReportButton);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.report_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        reportSpinner.setAdapter(adapter);
+
+        AlertDialog dialog = builder.create();
+
+        submitReportButton.setOnClickListener(v -> {
+            String selectedOption = reportSpinner.getSelectedItem().toString();
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (currentUser != null) {
+                String userId = currentUser.getUid();
+                DocumentReference userRef = db.collection("users").document(userId);
+                userRef.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String reporterName = document.getString("name");
+                            Date currentTime = new Date();
+                            saveReport(selectedOption, currentQuizTitle, questionList.get(currentQuestionIndex).getQuestion(), reporterName, currentTime);
+                        }
+
+                        Toast.makeText(this, "Report submitted", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+            } else {
+                Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void saveReport(String reportOption, String quizTitle, String questionText, String reporterName, Date timestamp) {
+
+        CollectionReference reportsRef = db.collection("report");
+
+
+        Map<String, Object> report = new HashMap<>();
+        report.put("report_type", reportOption);
+        report.put("quizTitle", quizTitle);
+        report.put("questionText", questionText);
+        report.put("reporter", reporterName);
+        report.put("timestamp", timestamp);
+
+        reportsRef.add(report)
+                .addOnSuccessListener(documentReference -> Log.d("QuizActivity", "Report added"))
+                .addOnFailureListener(e -> Log.e("QuizActivity", "Error adding report", e));
     }
 }
