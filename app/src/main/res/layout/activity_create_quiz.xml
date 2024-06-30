@@ -14,6 +14,21 @@
         android:padding="16dp"
         android:layout_marginBottom="8dp"/>
 
+    <TextView
+        android:id="@+id/quizTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Quiz Type"
+        android:textSize="18sp"
+        android:padding="16dp"/>
+
+    <Spinner
+        android:id="@+id/quizTypeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp"/>
+
     <Button
         android:id="@+id/addQuestionButton"
         android:layout_width="wrap_content"
