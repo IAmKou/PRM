@@ -101,12 +101,12 @@ public class CreateQuizActivity extends AppCompatActivity {
                 boolean isAnswer4Correct = (correctAnswerId == R.id.correctAnswer4);
 
                 List<Answer> answers = new ArrayList<>();
-                answers.add(new Answer(answer1, isAnswer1Correct));
-                answers.add(new Answer(answer2, isAnswer2Correct));
-                answers.add(new Answer(answer3, isAnswer3Correct));
-                answers.add(new Answer(answer4, isAnswer4Correct));;
+                answers.add(new Answer(null, answer1, isAnswer1Correct));
+                answers.add(new Answer(null, answer2, isAnswer2Correct));
+                answers.add(new Answer(null, answer3, isAnswer3Correct));
+                answers.add(new Answer(null, answer4, isAnswer4Correct));;
 
-                questionList.add(new Question(questionText, answers));
+                questionList.add(new Question(questionText, null, answers));
                 questionAdapter.notifyDataSetChanged();
 
                 dialog.dismiss();
