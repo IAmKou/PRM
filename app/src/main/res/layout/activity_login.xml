@@ -71,7 +71,7 @@
         android:ems="10"
         android:hint="Password"
         android:textColorHint="@color/black"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:padding="10dp"
         android:background="@color/material_dynamic_neutral95"
         android:drawableLeft="@drawable/baseline_lock_24"

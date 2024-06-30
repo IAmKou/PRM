@@ -82,7 +82,7 @@ public class ChangeActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ChangeActivity.this, "Password changed successfully.", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(ChangeActivity.this, LoginActivity.class));
+                                    startActivity(new Intent(ChangeActivity.this, MainActivity.class));
 
                                 } else {
                                     Toast.makeText(ChangeActivity.this, "Password change failed!", Toast.LENGTH_SHORT).show();

@@ -38,6 +38,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation("com.google.firebase:firebase-analytics")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
