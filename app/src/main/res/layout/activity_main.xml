@@ -39,36 +39,56 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="openExam"
         android:text="Exam"
-        tools:layout_editor_absoluteX="297dp"
-        tools:layout_editor_absoluteY="280dp" />
+        app:layout_constraintBottom_toTopOf="@+id/changePass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
+        android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="openQuizList"
         android:text="Quiz List"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="273dp" />
+        app:layout_constraintBottom_toTopOf="@+id/changePass"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
+        android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="openLearning"
         android:text="Learning"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="266dp" />
+        app:layout_constraintBottom_toTopOf="@+id/changePass"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
+        android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="openUserList"
         android:text="User List"
-        tools:layout_editor_absoluteX="272dp"
-        tools:layout_editor_absoluteY="181dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.727" />
 
     <Button
         android:id="@+id/btn2"
