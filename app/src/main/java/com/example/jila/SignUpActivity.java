@@ -65,8 +65,8 @@ public class SignUpActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 My_Models models = new My_Models(email, name, password);
                                 String id = task.getResult().getUser().getUid();
-                                DocumentReference documentReference = firestore.collection("user").document(id);
-                                firestore.collection("user").document(id).set(models).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                DocumentReference documentReference = firestore.collection("users").document(id);
+                                firestore.collection("users").document(id).set(models).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
