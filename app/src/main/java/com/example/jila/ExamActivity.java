@@ -50,7 +50,7 @@ public class ExamActivity extends AppCompatActivity {
     }
 
     private void loadQuestions() {
-        db.collection("quizzes").document("quizId") // Thay "quizId" bằng ID của quiz bạn muốn tải
+        db.collection("quiz").document("XeydVVPwCG6hxLIKKWRa")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
