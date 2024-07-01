@@ -3,30 +3,32 @@ package com.example.jila;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import model.Report;
 
 public class ReportDetailActivity extends AppCompatActivity {
-    public static final String EXTRA_REPORT = "com.example.jila.REPORT";
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report_detail);
 
-        Report report = getIntent().getParcelableExtra(EXTRA_REPORT);
-
+        Report report = getIntent().getParcelableExtra("report");
+        // Use the report object to populate your views
         if (report != null) {
+
             TextView reporterTextView = findViewById(R.id.reporter);
-            TextView typeIdTextView = findViewById(R.id.type_id);
-            TextView quizIdTextView = findViewById(R.id.quiz_id);
-            TextView reportTimeTextView = findViewById(R.id.report_time);
+            TextView reportTypeTextView = findViewById(R.id.type_name);
+            TextView quizTitleTextView = findViewById(R.id.quiz_name);
+            TextView questionTextView = findViewById(R.id.question_text);
+            TextView timeTextView = findViewById(R.id.report_time);
 
             reporterTextView.setText(report.getReporter());
-            typeIdTextView.setText(report.getTypeName());
-            quizIdTextView.setText(report.getQuizName());
-            reportTimeTextView.setText(report.getReport_time().toDate().toString());
+            reportTypeTextView.setText(report.getReport_type());
+            quizTitleTextView.setText(report.getQuizTitle());
+            questionTextView.setText(report.getQuestionText());
+            timeTextView.setText(report.getReport_time().toDate().toString());
         }
     }
 }
