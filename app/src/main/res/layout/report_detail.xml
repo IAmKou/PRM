@@ -13,18 +13,27 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/type_id"
+        android:id="@+id/type_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Type"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/quiz_id"
+        android:id="@+id/quiz_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Quiz"
         android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="18sp" />
+
 
     <TextView
         android:id="@+id/report_time"
