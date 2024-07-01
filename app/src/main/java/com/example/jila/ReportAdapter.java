@@ -41,17 +41,15 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
     public static class ReportViewHolder extends RecyclerView.ViewHolder {
         private TextView reporterTextView;
-        private TextView typeIdTextView;
-        private TextView quizIdTextView;
-        private TextView reportTimeTextView;
+        private TextView typeNameTextView;
+        private TextView quizNameTextView;
         private Button button;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
             reporterTextView = itemView.findViewById(R.id.reporter);
-            typeIdTextView = itemView.findViewById(R.id.type_id);
-            quizIdTextView = itemView.findViewById(R.id.quiz_id);
-            reportTimeTextView = itemView.findViewById(R.id.report_time);
+            typeNameTextView = itemView.findViewById(R.id.type_name);
+            quizNameTextView = itemView.findViewById(R.id.quiz_name);
             button = itemView.findViewById(R.id.button);
 
             button.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +59,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
                     if (position != RecyclerView.NO_POSITION) {
                         Report report = reportList.get(position);
                         Intent intent = new Intent(v.getContext(), ReportDetailActivity.class);
-                        intent.putExtra(ReportDetailActivity.EXTRA_REPORT, report);
+                        intent.putExtra("report", report);
                         v.getContext().startActivity(intent);
                     }
                 }
@@ -70,11 +68,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
 
         public void bind(Report report) {
             reporterTextView.setText(report.getReporter());
-            typeIdTextView.setText(report.getTypeName());
-            quizIdTextView.setText(report.getQuizName());
-            reportTimeTextView.setText(report.getReport_time().toDate().toString());
+            typeNameTextView.setText(report.getReport_type());
+            quizNameTextView.setText(report.getQuizTitle());
         }
     }
-
 }
-
