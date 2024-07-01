@@ -1,28 +1,29 @@
 package model;
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcel;
 import com.google.firebase.Timestamp;
 
-public class Report implements Parcelable {
+public class Report  implements Parcelable{
     private Timestamp report_time;
     private String reporter;
-    private String typeName;
-    private String quizName;
+    private String report_type;
+    private String quizTitle;
+    private String questionText;
 
-    public Report(Timestamp report_time, String reporter, String typeName, String quizName) {
+    public Report(Timestamp report_time, String reporter, String report_type, String quizTitle, String questionText) {
         this.report_time = report_time;
         this.reporter = reporter;
-        this.typeName = typeName;
-        this.quizName = quizName;
+        this.report_type = report_type;
+        this.quizTitle = quizTitle;
+        this.questionText = questionText;
     }
-
     protected Report(Parcel in) {
-        report_time = in.readParcelable(Timestamp.class.getClassLoader());
         reporter = in.readString();
-        typeName = in.readString();
-        quizName = in.readString();
+        report_type = in.readString();
+        quizTitle = in.readString();
+        questionText = in.readString();
+        report_time = new Timestamp(in.readLong(), in.readInt());
     }
 
     public static final Creator<Report> CREATOR = new Creator<Report>() {
@@ -37,22 +38,6 @@ public class Report implements Parcelable {
         }
     };
 
-    public Timestamp getReport_time() {
-        return report_time;
-    }
-
-    public String getReporter() {
-        return reporter;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public String getQuizName() {
-        return quizName;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -60,9 +45,51 @@ public class Report implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(report_time, flags);
         dest.writeString(reporter);
-        dest.writeString(typeName);
-        dest.writeString(quizName);
+        dest.writeString(report_type);
+        dest.writeString(quizTitle);
+        dest.writeString(questionText);
+        dest.writeLong(report_time.getSeconds());
+        dest.writeInt(report_time.getNanoseconds());
+    }
+
+    public Timestamp getReport_time() {
+        return report_time;
+    }
+
+    public void setReport_time(Timestamp report_time) {
+        this.report_time = report_time;
+    }
+
+    public String getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
+    }
+
+    public String getReport_type() {
+        return report_type;
+    }
+
+    public void setReport_type(String report_type) {
+        this.report_type = report_type;
+    }
+
+    public String getQuizTitle() {
+        return quizTitle;
+    }
+
+    public void setQuizTitle(String quizTitle) {
+        this.quizTitle = quizTitle;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 }
