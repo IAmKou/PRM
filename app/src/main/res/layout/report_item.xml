@@ -13,24 +13,17 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/type_id"
+        android:id="@+id/type_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Type"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/quiz_id"
+        android:id="@+id/quiz_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Quiz"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/report_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Time"
         android:textSize="16sp" />
 
     <Button
