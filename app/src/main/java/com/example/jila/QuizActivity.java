@@ -211,7 +211,7 @@ public class QuizActivity extends AppCompatActivity {
         report.put("quizTitle", quizTitle);
         report.put("questionText", questionText);
         report.put("reporter", reporterName);
-        report.put("timestamp", timestamp);
+        report.put("time", timestamp);
 
         reportsRef.add(report)
                 .addOnSuccessListener(documentReference -> Log.d("QuizActivity", "Report added"))
