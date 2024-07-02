@@ -27,4 +27,13 @@ public class Question {
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
+
+    public boolean isCorrectAnswer(String selectedAnswer) {
+        for (Answer answer : answers) {
+            if (answer.getAnswer_text().equals(selectedAnswer) && answer.isIs_correct()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
