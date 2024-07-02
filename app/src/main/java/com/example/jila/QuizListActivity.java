@@ -28,7 +28,7 @@ public class QuizListActivity extends AppCompatActivity {
         quizAdapter = new QuizAdapter(quizList);
         recyclerView.setAdapter(quizAdapter);
 
-        db.collection("quizzes")
+        db.collection("quiz")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
