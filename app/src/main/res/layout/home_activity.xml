@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="421dp"
+                android:layout_height="96dp"
+                android:background="@android:color/holo_blue_bright"
+                tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="58dp"
+                    android:layout_height="72dp"
+                    android:layout_marginEnd="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/quiz"
+                    tools:layout_editor_absoluteY="6dp" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="110dp"
+                    android:layout_height="50dp"
+                    android:text="Đăng nhập"
+                    tools:layout_editor_absoluteX="4dp"
+                    tools:layout_editor_absoluteY="14dp" />
+
+                <EditText
+                    android:id="@+id/editTextText2"
+                    android:layout_width="220dp"
+                    android:layout_height="48dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="Tìm kiếm"
+                    tools:layout_editor_absoluteX="125dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tải ứng dụng để học"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="139dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="186dp"
+            android:layout_height="235dp"
+            app:srcCompat="@drawable/qrcode_116623772_01469cd65ddf5b5ba44ba5b27b4f0b2b" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:text="Học bất cứ đâu"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="71dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="108dp"
+                android:text="Đồng bộ hoàn hảo"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:layout_editor_absoluteX="71dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:text="Học ngoại tuyến"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                tools:layout_editor_absoluteX="71dp" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="56dp"
+                android:layout_height="31dp"
+                app:srcCompat="@drawable/cell_phone"
+                tools:layout_editor_absoluteX="15dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="29dp"
+                android:layout_height="31dp"
+                app:srcCompat="@drawable/thunder"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="172dp" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="58dp"
+                tools:layout_editor_absoluteY="256dp" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/downloads"
+                tools:layout_editor_absoluteX="28dp"
+                tools:layout_editor_absoluteY="302dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
