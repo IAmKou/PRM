@@ -1,25 +1,24 @@
 package com.example.jila;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
+
+import model.Report;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportViewHolder> {
-
-    private List<Report> reportList;
-    private SimpleDateFormat dateFormat;
+    private static List<Report> reportList;
 
     public ReportAdapter(List<Report> reportList) {
         this.reportList = reportList;
-        this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
     }
 
     @NonNull
@@ -32,11 +31,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
     @Override
     public void onBindViewHolder(@NonNull ReportViewHolder holder, int position) {
         Report report = reportList.get(position);
-        holder.reportId.setText(String.valueOf(report.getReport_id()));
-        holder.reportDate.setText(dateFormat.format(report.getReport_time()));
-        holder.reporter.setText(String.valueOf(report.getReporter()));
-        holder.quizId.setText(String.valueOf(report.getQuiz_id()));
-        holder.reportText.setText(String.valueOf(report.getReport_text()));
+        holder.bind(report);
     }
 
     @Override
@@ -44,21 +39,37 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ReportView
         return reportList.size();
     }
 
-    static class ReportViewHolder extends RecyclerView.ViewHolder {
-
-        TextView reportId;
-        TextView reportDate;
-        TextView reporter;
-        TextView quizId;
-        TextView reportText;
+    public static class ReportViewHolder extends RecyclerView.ViewHolder {
+        private TextView reporterTextView;
+        private TextView typeNameTextView;
+        private TextView quizNameTextView;
+        private Button button;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
-            reportId = itemView.findViewById(R.id.textViewReportId);
-            reportDate = itemView.findViewById(R.id.textViewReportDate);
-            reporter = itemView.findViewById(R.id.textViewReporter);
-            quizId = itemView.findViewById(R.id.textViewQuizId);
-            reportText = itemView.findViewById(R.id.textViewReportText);
+            reporterTextView = itemView.findViewById(R.id.reporter);
+            typeNameTextView = itemView.findViewById(R.id.type_name);
+            quizNameTextView = itemView.findViewById(R.id.quiz_name);
+            button = itemView.findViewById(R.id.button);
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Report report = reportList.get(position);
+                        Intent intent = new Intent(v.getContext(), ReportDetailActivity.class);
+                        intent.putExtra("report", report);
+                        v.getContext().startActivity(intent);
+                    }
+                }
+            });
+        }
+
+        public void bind(Report report) {
+            reporterTextView.setText(report.getReporter());
+            typeNameTextView.setText(report.getReport_type());
+            quizNameTextView.setText(report.getQuizTitle());
         }
     }
 }

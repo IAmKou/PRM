@@ -2,47 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textViewReportId"
-        android:layout_width="wrap_content"
+        android:id="@+id/reporter"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Report ID"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textViewReportDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Report Date"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/textViewReporter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:text="Reporter"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textViewQuizId"
-        android:layout_width="wrap_content"
+        android:id="@+id/type_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Quiz ID"
-        android:textSize="14sp" />
+        android:text="Type"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textViewReportText"
+        android:id="@+id/quiz_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quiz"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Report Text"
-        android:textSize="14sp" />
+        android:text="View Details" />
 </LinearLayout>
