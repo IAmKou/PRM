@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,14 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JILA"
-        tools:targetApi="32" >
+        tools:targetApi="31">
         <activity
-            android:name=".profile_screen"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            android:name=".edit_profile_screen"
+            android:exported="false" />
         <activity
             android:name=".CreateQuizActivity"
             android:exported="false" />
@@ -34,11 +30,13 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ReportListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false">
+            android:name=".profile_screen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SignUpActivity"
@@ -59,7 +57,13 @@
             android:name=".ExamActivity"
             android:exported="false" />
         <activity
+            android:name=".ReportListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReportDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="false" />
     </application>
 
