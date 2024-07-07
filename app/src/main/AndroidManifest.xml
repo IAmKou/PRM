@@ -14,7 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JILA"
         tools:targetApi="31">
-
+        <activity
+            android:name=".class_list_screen"
+            android:exported="false" />
+        <activity
+            android:name=".profile_screen"
+            android:exported="false" />
+        <activity
+            android:name=".edit_profile_screen"
+            android:exported="false" />
         <activity
             android:name=".CreateQuizActivity"
             android:exported="false" />
@@ -28,10 +36,11 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Setting_screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -52,13 +61,15 @@
             android:exported="false" />
         <activity
             android:name=".ExamActivity"
-
             android:exported="false" />
         <activity
             android:name=".ReportListActivity"
             android:exported="false" />
         <activity
             android:name=".ReportDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="false" />
     </application>
 
