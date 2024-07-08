@@ -1,5 +1,6 @@
 package com.example.jila;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,12 +15,15 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
+
+        setContentView(R.layout.activity_main);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Button b1 = findViewById(R.id.button);
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     public void openExam(View view) {
@@ -74,7 +79,5 @@ public class MainActivity extends AppCompatActivity {
     public void openUserList(View view) {
         startActivity(new Intent(this, UserListActivity.class));
     }
-
-
 }
 
