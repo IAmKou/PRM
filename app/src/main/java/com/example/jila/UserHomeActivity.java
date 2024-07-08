@@ -19,7 +19,7 @@ public class UserHomeActivity extends AppCompatActivity {
         buttonProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserHomeActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(UserHomeActivity.this, profile_screen.class);
                 startActivity(intent);
             }
         });
@@ -51,8 +51,9 @@ public class UserHomeActivity extends AppCompatActivity {
         btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserHomeActivity.this, HelpActivity.class);
+                Intent intent = new Intent(UserHomeActivity.this, Setting_screen.class);
                 startActivity(intent);
             }
         });
+    }
 }
