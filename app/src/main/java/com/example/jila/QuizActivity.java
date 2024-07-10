@@ -90,13 +90,15 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void loadQuiz() {
-        // Hardcoding quizId
-        String quizId = "XeydVVPwCG6hxLIKKWRa";
+
+        String quizId = getIntent().getStringExtra("QUIZ_ID");
 
         CollectionReference quizRef = db.collection("quiz");
         quizRef.document(quizId).get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
                 currentQuizTitle = documentSnapshot.getString("title");
+
+                Toast.makeText(this, "Quiz Title: " + currentQuizTitle, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Quiz not found", Toast.LENGTH_SHORT).show();
             }
