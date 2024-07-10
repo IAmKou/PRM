@@ -11,6 +11,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.User;
+
 public class UserListActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private RecyclerView recyclerView;
