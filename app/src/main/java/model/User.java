@@ -1,4 +1,4 @@
-package com.example.jila;
+package model;
 
 public class User {
     private String name;
