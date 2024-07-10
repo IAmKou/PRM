@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button b1 = findViewById(R.id.button);
         Button b2 = findViewById(R.id.btn2);
-        Button b3 = findViewById(R.id.button3);
         Button changePassButton = findViewById(R.id.changePass);
 
         changePassButton.setOnClickListener(new View.OnClickListener() {
@@ -53,15 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     public void openExam(View view) {
