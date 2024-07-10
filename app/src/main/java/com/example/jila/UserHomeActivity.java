@@ -27,7 +27,7 @@ public class UserHomeActivity extends AppCompatActivity {
         btnQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserHomeActivity.this, QuizActivity.class);
+                Intent intent = new Intent(UserHomeActivity.this, QuizListActivity.class);
                 startActivity(intent);
             }
         });
