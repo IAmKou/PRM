@@ -25,7 +25,7 @@ public class QuizListActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.recyclerViewQuizzes);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        quizAdapter = new QuizAdapter(quizList);
+        quizAdapter = new QuizAdapter(this, quizList);
         recyclerView.setAdapter(quizAdapter);
 
         db.collection("quiz")
@@ -33,6 +33,7 @@ public class QuizListActivity extends AppCompatActivity {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                         Quiz quiz = documentSnapshot.toObject(Quiz.class);
+                        quiz.setId(documentSnapshot.getId());
                         quizList.add(quiz);
                     }
                     quizAdapter.notifyDataSetChanged();
