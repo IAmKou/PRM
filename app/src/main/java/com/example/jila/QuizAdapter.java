@@ -1,5 +1,7 @@
 package com.example.jila;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,10 @@ import java.util.List;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
     private List<Quiz> quizList;
+    private Context context;
 
-    public QuizAdapter(List<Quiz> quizList) {
+    public QuizAdapter(Context context, List<Quiz> quizList) {
+        this.context = context;
         this.quizList = quizList;
     }
 
@@ -26,6 +30,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
     public void onBindViewHolder(@NonNull QuizViewHolder holder, int position) {
         Quiz quiz = quizList.get(position);
         holder.quizTitleTextView.setText(quiz.getTitle());
+        holder.bind(quiz);
     }
 
     @Override
@@ -33,12 +38,23 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         return quizList.size();
     }
 
-    public static class QuizViewHolder extends RecyclerView.ViewHolder {
+    public class QuizViewHolder extends RecyclerView.ViewHolder {
         TextView quizTitleTextView;
 
         public QuizViewHolder(@NonNull View itemView) {
             super(itemView);
             quizTitleTextView = itemView.findViewById(R.id.quizTitleTextView);
+        }
+
+        public void bind(final Quiz quiz) {
+            quizTitleTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, QuizActivity.class);
+                    intent.putExtra("QUIZ_ID", quiz.getId());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }
