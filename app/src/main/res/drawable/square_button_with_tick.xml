@@ -1,0 +1,15 @@
+<!-- res/drawable/square_button_with_tick.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="8dp" />
+            <stroke android:width="2dp" android:color="#000000" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_tick"
+        android:top="10dp"
+        android:right="10dp"
+        android:gravity="top|end"/>
+</layer-list>

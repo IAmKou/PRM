@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -40,14 +42,15 @@ public class QuizActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private List<Question> questionList = new ArrayList<>();
     private int currentQuestionIndex = 0;
+    private GridLayout answerGroup;
+
 
     private TextView questionTextView;
-    private RadioGroup answerGroup;
     private Button nextButton;
     private Button finishButton;
     private Button reportButton;
 
-    private String currentQuizTitle; // Variable to hold the current quiz title
+    private String currentQuizTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -127,7 +130,6 @@ public class QuizActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 List<Answer> answers = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    String answerId = document.getId();
                     String answerText = document.getString("answerText");
                     boolean isCorrect = document.getBoolean("isCorrect");
 
@@ -152,13 +154,34 @@ public class QuizActivity extends AppCompatActivity {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(currentQuestion.getAnswers().get(i).getAnswer_text());
             radioButton.setId(i);
+            radioButton.setGravity(Gravity.CENTER); // Center text
+            radioButton.setPadding(8, 8, 8, 8);
 
+            // Set the background based on whether the answer is correct
             if (currentQuestion.getAnswers().get(i).isIs_correct()) {
-                radioButton.setBackgroundColor(Color.GREEN);
+                radioButton.setBackgroundResource(R.drawable.square_button_with_tick);
+            } else {
+                radioButton.setBackgroundResource(R.drawable.square_button);
             }
+
+            radioButton.setButtonDrawable(null); // remove the default radio button circle
+
+            GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+            layoutParams.width = (int) getResources().getDimension(R.dimen.square_button_size);
+            layoutParams.height = (int) getResources().getDimension(R.dimen.square_button_size);
+            layoutParams.rowSpec = GridLayout.spec(i / 2);
+            layoutParams.columnSpec = GridLayout.spec(i % 2);
+            layoutParams.setMargins(8, 8, 8, 8);
+            radioButton.setLayoutParams(layoutParams);
+
             answerGroup.addView(radioButton);
         }
     }
+
+
+
+
+
 
     private void showReportDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
