@@ -40,16 +40,6 @@
                     tools:layout_editor_absoluteX="4dp"
                     tools:layout_editor_absoluteY="14dp" />
 
-                <EditText
-                    android:id="@+id/editTextText2"
-                    android:layout_width="220dp"
-                    android:layout_height="48dp"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:text="Tìm kiếm"
-                    tools:layout_editor_absoluteX="125dp"
-                    tools:layout_editor_absoluteY="16dp" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -63,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="42dp"
-        android:text="Tải ứng dụng để học"
+        android:text="Quét để gửi phản hồi cho chúng tôi"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
