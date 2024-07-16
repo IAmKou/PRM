@@ -2,6 +2,7 @@ package com.example.jila;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -94,6 +95,13 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void saveEmailToSharedPreferences(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("email", email);
+        editor.apply();
     }
     private void checkUserRole(String userId) {
         firestore.collection("users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
