@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -17,7 +18,12 @@
             android:layout_height="54dp"
             android:layout_marginBottom="98dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/buttonBackgroundLight"
+            android:padding="8dp"
+            android:elevation="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp">
 
             <EditText
                 android:id="@+id/etSearch"
@@ -26,18 +32,22 @@
                 android:layout_weight="1"
                 android:hint="Search"
                 android:inputType="text"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:background="@color/background"
+                android:textColor="@color/textPrimary"
+                android:elevation="4dp" />
 
             <ImageButton
                 android:id="@+id/ivSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="54dp"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="8dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Search Employee"
                 android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@android:drawable/ic_menu_search" />
+                android:src="@android:drawable/ic_menu_search"
+
+                android:elevation="4dp" />
 
             <ImageButton
                 android:id="@+id/ivSettings"
@@ -47,79 +57,75 @@
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Settings"
                 android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@android:drawable/ic_menu_manage" />
+                android:src="@android:drawable/ic_menu_manage"
+                android:elevation="4dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout4"
             android:layout_marginTop="-54dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/btn2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_green_dark"
+                style="@style/ButtonStyle"
+                android:layout_width="135dp"
+                android:backgroundTint="@color/buttonBackgroundLight"
                 android:text="Create Quiz" />
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_light"
+                style="@style/ButtonStyle"
+                android:layout_width="130dp"
                 android:onClick="openExam"
                 android:text="Exam" />
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_dark"
+                style="@style/ButtonStyle"
+                android:layout_width="122dp"
                 android:text="Quiz" />
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_orange_light"
+                style="@style/ButtonStyle"
+                android:layout_width="117dp"
                 android:onClick="openQuizList"
                 android:text="Quiz List" />
 
             <Button
                 android:id="@+id/button"
+                style="@style/ButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_green_light"
+                android:backgroundTint="@color/buttonBackgroundLight"
                 android:text="Report List" />
 
             <Button
                 android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_purple"
+                style="@style/ButtonStyle"
+                android:layout_width="113dp"
                 android:onClick="openLearning"
                 android:text="Learning" />
 
             <Button
                 android:id="@+id/button6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_blue_dark"
+                style="@style/ButtonStyle"
+                android:layout_width="109dp"
                 android:onClick="openUserList"
                 android:text="User List" />
 
             <Button
                 android:id="@+id/changePass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_blue_light"
+                style="@style/ButtonStyle"
+                android:backgroundTint="@color/buttonBackgroundLight"
                 android:text="Change Password" />
         </LinearLayout>
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
