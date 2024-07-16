@@ -35,6 +35,7 @@ public class LearningActivity extends AppCompatActivity {
     private ViewFlipper viewFlipper;
     private GestureDetector gestureDetector;
     private Button finishButton;
+    private Button nextButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class LearningActivity extends AppCompatActivity {
         backTextView = findViewById(R.id.backTextView);
         viewFlipper = findViewById(R.id.viewFlipper);
         finishButton = findViewById(R.id.finishButton);
+        nextButton = findViewById(R.id.nextButton);
 
         db = FirebaseFirestore.getInstance();
 
@@ -59,13 +61,22 @@ public class LearningActivity extends AppCompatActivity {
             finish();
         });
 
+        nextButton.setOnClickListener(v -> {
+            if (currentQuestionIndex < questionList.size()) {
+                showNextQuestion();
+            } else {
+                Intent intent = new Intent(LearningActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         viewFlipper.setOnClickListener(v -> {
             viewFlipper.showNext();
         });
     }
 
     private void loadQuiz() {
-        // Hardcoding quizId
         String quizId = "XeydVVPwCG6hxLIKKWRa";
 
         CollectionReference questionRef = db.collection("question");
@@ -110,6 +121,7 @@ public class LearningActivity extends AppCompatActivity {
             viewFlipper.setDisplayedChild(0); // Show front side of the card
         } else {
             finishButton.setVisibility(View.VISIBLE);
+            nextButton.setText("Home");
         }
     }
 
@@ -162,3 +174,4 @@ public class LearningActivity extends AppCompatActivity {
         }
     }
 }
+
