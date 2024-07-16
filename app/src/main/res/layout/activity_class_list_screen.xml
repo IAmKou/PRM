@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".class_list_screen">
+    tools:context=".ClassList">
 
     <TextView
         android:id="@+id/textClass"

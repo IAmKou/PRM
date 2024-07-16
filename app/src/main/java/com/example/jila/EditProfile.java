@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class edit_profile_screen extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
 
     private EditText etUsername;
