@@ -1,6 +1,9 @@
 package com.example.jila;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +21,7 @@ public class UserListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
     private List<User> userList = new ArrayList<>();
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,9 @@ public class UserListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         userAdapter = new UserAdapter(userList);
         recyclerView.setAdapter(userAdapter);
+
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> finish());
 
         db.collection("users")
                 .get()
