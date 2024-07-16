@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
@@ -68,10 +69,8 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
 
-                                progressDialog.dismiss();
-
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                finish();
+                                String userId = auth.getCurrentUser().getUid();
+                                checkUserRole(userId);
 
                             } else {
                                 progressDialog.dismiss();
@@ -93,6 +92,26 @@ public class LoginActivity extends AppCompatActivity {
 
                 startActivity(new Intent(LoginActivity.this, ForgetActivity.class));
 
+            }
+        });
+    }
+    private void checkUserRole(String userId) {
+        firestore.collection("users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    String role = task.getResult().getString("role");
+                    progressDialog.dismiss();
+                    if ("admin".equals(role)) {
+                        startActivity(new Intent(LoginActivity.this, AdminDashboard.class));
+                    } else {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    }
+                    finish();
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(LoginActivity.this, "Failed to retrieve user role!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

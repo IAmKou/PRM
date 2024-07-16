@@ -65,9 +65,6 @@ public class ExamActivity extends AppCompatActivity {
         finishButton.setOnClickListener(v -> {
             checkAnswer();
             showScore();
-            Intent intent = new Intent(ExamActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
         });
     }
 
@@ -138,10 +135,23 @@ public class ExamActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Quiz Completed");
         builder.setMessage("Your score is: " + score + " out of " + questionList.size());
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-        builder.show();
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            dialog.dismiss();
+            navigateToHome();
+        });
         AlertDialog dialog = builder.create();
         dialog.show();
-        new Handler().postDelayed(() -> dialog.dismiss(), 3000);
+        new Handler().postDelayed(() -> {
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+                navigateToHome();
+            }
+        }, 3000);
+    }
+
+    private void navigateToHome() {
+        Intent intent = new Intent(ExamActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
