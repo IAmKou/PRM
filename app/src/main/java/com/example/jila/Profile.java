@@ -22,6 +22,16 @@ public class Profile extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile_screen);
 
+        Button button1 = findViewById(R.id.Edit);
 
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, EditProfile.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 }
