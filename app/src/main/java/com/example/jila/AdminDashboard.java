@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import model.Report;
+
 public class AdminDashboard extends AppCompatActivity {
 
     @Override
@@ -26,7 +28,7 @@ public class AdminDashboard extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminDashboard.this, Quiz.class);
+                Intent intent = new Intent(AdminDashboard.this, UserListActivity.class);
                 startActivity(intent);
             }
         });
@@ -34,7 +36,7 @@ public class AdminDashboard extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminDashboard.this, ReportListActivity.class);
+                Intent intent = new Intent(AdminDashboard.this, QuizListActivity.class);
                 startActivity(intent);
             }
         });
@@ -42,7 +44,7 @@ public class AdminDashboard extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminDashboard.this, UserListActivity.class);
+                Intent intent = new Intent(AdminDashboard.this, ReportListActivity.class);
                 startActivity(intent);
             }
         });
