@@ -76,41 +76,107 @@ public class LearningActivity extends AppCompatActivity {
         });
     }
 
+//    private void loadQuiz() {
+//        String quizId = "XeydVVPwCG6hxLIKKWRa";
+//
+//        CollectionReference questionRef = db.collection("question");
+//        questionRef.whereEqualTo("quizId", db.document("quiz/" + quizId)).get().addOnCompleteListener(task -> {
+//            if (task.isSuccessful()) {
+//                for (QueryDocumentSnapshot document : task.getResult()) {
+//                    String questionText = document.getString("questionText");
+//                    List<Answer> answers = new ArrayList<>();
+//                    List<Map<String, Object>> answersData = (List<Map<String, Object>>) document.get("answers");
+//
+//                    if (answersData != null) {
+//                        for (Map<String, Object> answerData : answersData) {
+//                            String answerText = (String) answerData.get("answerText");
+//                            Boolean isCorrect = (Boolean) answerData.get("isCorrect");
+//                            if (answerText != null && isCorrect != null) {
+//                                answers.add(new Answer(answerText, isCorrect));
+//                            }
+//                        }
+//                    }
+//
+//                    if (questionText != null && !answers.isEmpty()) {
+//                        questionList.add(new Question(questionText, answers));
+//                    }
+//                }
+//                if (!questionList.isEmpty()) {
+//                    showNextQuestion();
+//                } else {
+//                    Toast.makeText(this, "No questions found.", Toast.LENGTH_SHORT).show();
+//                }
+//            } else {
+//                Toast.makeText(this, "Failed to load questions.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
     private void loadQuiz() {
+        Log.d("LoadQuiz", "loadQuiz called");
         String quizId = "XeydVVPwCG6hxLIKKWRa";
 
         CollectionReference questionRef = db.collection("question");
         questionRef.whereEqualTo("quizId", db.document("quiz/" + quizId)).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                Log.d("LoadQuiz", "Task successful");
+
                 for (QueryDocumentSnapshot document : task.getResult()) {
+                    String questionId = document.getId();
                     String questionText = document.getString("questionText");
-                    List<Answer> answers = new ArrayList<>();
-                    List<Map<String, Object>> answersData = (List<Map<String, Object>>) document.get("answers");
 
-                    if (answersData != null) {
-                        for (Map<String, Object> answerData : answersData) {
-                            String answerText = (String) answerData.get("answerText");
-                            Boolean isCorrect = (Boolean) answerData.get("isCorrect");
-                            if (answerText != null && isCorrect != null) {
-                                answers.add(new Answer(answerText, isCorrect));
-                            }
-                        }
+                    if (questionText != null) {
+                        loadAnswers(questionId, questionText);
+                    } else {
+                        Log.d("LoadQuiz", "Question text is null for document: " + questionId);
                     }
-
-                    if (questionText != null && !answers.isEmpty()) {
-                        questionList.add(new Question(questionText, answers));
-                    }
-                }
-                if (!questionList.isEmpty()) {
-                    showNextQuestion();
-                } else {
-                    Toast.makeText(this, "No questions found.", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast.makeText(this, "Failed to load questions.", Toast.LENGTH_SHORT).show();
+                Log.e("LoadQuiz", "Error getting documents: ", task.getException());
             }
         });
     }
+
+    private void loadAnswers(String questionId, String questionText) {
+        CollectionReference answerRef = db.collection("answer");
+        answerRef.whereEqualTo("questionId", db.document("question/" + questionId)).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Answer> answers = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    String answerText = document.getString("answerText");
+                    Boolean isCorrect = document.getBoolean("isCorrect");
+
+                    if (answerText != null && isCorrect != null) {
+                        answers.add(new Answer(answerText, isCorrect));
+                    } else {
+                        Log.d("LoadQuiz", "Answer text or isCorrect is null for document: " + document.getId());
+                    }
+                }
+
+                if (!answers.isEmpty()) {
+                    questionList.add(new Question(questionText, answers));
+                    Log.d("LoadQuiz", "Added question: " + questionText);
+
+                    if (questionList.size() == 1) {
+                        showNextQuestion();
+                    }
+                } else {
+                    Log.d("LoadQuiz", "No answers found for question: " + questionId);
+                }
+            } else {
+                Toast.makeText(this, "Failed to load answers.", Toast.LENGTH_SHORT).show();
+                Log.e("LoadQuiz", "Error getting documents: ", task.getException());
+            }
+
+            if (questionList.isEmpty()) {
+                Toast.makeText(this, "No questions found.", Toast.LENGTH_SHORT).show();
+                Log.d("LoadQuiz", "questionList is empty");
+            }
+        });
+    }
+
+
 
     private void showNextQuestion() {
         if (currentQuestionIndex < questionList.size()) {
