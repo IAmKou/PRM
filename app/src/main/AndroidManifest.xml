@@ -23,9 +23,9 @@
         <activity
             android:name=".Profile"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".EditProfile"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" />
         <activity
             android:name=".CreateQuizActivity"
             android:exported="false" />
@@ -66,7 +66,7 @@
             android:name=".ReportDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfile"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
