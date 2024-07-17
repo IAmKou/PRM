@@ -73,7 +73,6 @@
 //
 package com.example.jila;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         binding.ivSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Setting_screen.class));
+                startActivity(new Intent(MainActivity.this, Setting.class));
             }
         });
     }

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Setting_screen">
+    tools:context=".Setting">
 
     <TextView
         android:id="@+id/setting"

@@ -51,7 +51,7 @@ public class UserHomeActivity extends AppCompatActivity {
         btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserHomeActivity.this, Setting_screen.class);
+                Intent intent = new Intent(UserHomeActivity.this, Setting.class);
                 startActivity(intent);
             }
         });
