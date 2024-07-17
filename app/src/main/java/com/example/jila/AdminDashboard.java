@@ -1,5 +1,7 @@
 package com.example.jila;
 
+import static com.example.jila.R.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,11 +9,6 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import model.Report;
 
 public class AdminDashboard extends AppCompatActivity {
 
@@ -21,11 +18,12 @@ public class AdminDashboard extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_dashboard);
 
-        Button button1 = findViewById(R.id.UserList_btn);
-        Button button2 = findViewById(R.id.Q_btn);
-        Button button3 = findViewById(R.id.rp_btn);
+        Button uList = findViewById(R.id.UserList_btn);
+        Button quizList = findViewById(R.id.Q_btn);
+        Button reportList = findViewById(R.id.rp_btn);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+
+        uList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminDashboard.this, UserListActivity.class);
@@ -33,7 +31,7 @@ public class AdminDashboard extends AppCompatActivity {
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        quizList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminDashboard.this, QuizListActivity.class);
@@ -41,7 +39,7 @@ public class AdminDashboard extends AppCompatActivity {
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        reportList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminDashboard.this, ReportListActivity.class);
