@@ -127,6 +127,7 @@ public class ExamActivity extends AppCompatActivity {
             String selectedAnswer = selectedRadioButton.getText().toString();
             if (questionList.get(currentQuestionIndex).isCorrectAnswer(selectedAnswer)) {
                 score++;
+                Log.d("ExamActivity", "Correct answer! Current score: " + score);
             }
         }
     }
