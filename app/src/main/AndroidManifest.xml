@@ -39,7 +39,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Profile"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
@@ -66,7 +66,7 @@
             android:name=".ReportDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Profile"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
