@@ -86,26 +86,6 @@
                 android:text="Exam" />
 
             <Button
-                android:id="@+id/button3"
-                style="@style/ButtonStyle"
-                android:layout_width="122dp"
-                android:text="Quiz" />
-
-            <Button
-                android:id="@+id/button4"
-                style="@style/ButtonStyle"
-                android:layout_width="117dp"
-                android:onClick="openQuizList"
-                android:text="Quiz List" />
-
-            <Button
-                android:id="@+id/button"
-                style="@style/ButtonStyle"
-                android:layout_width="wrap_content"
-                android:backgroundTint="@color/buttonBackgroundLight"
-                android:text="Report List" />
-
-            <Button
                 android:id="@+id/button5"
                 style="@style/ButtonStyle"
                 android:layout_width="113dp"

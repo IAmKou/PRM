@@ -106,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ReportListActivity.class);
-                startActivity(intent);
-            }
-        });
+//        binding.button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, ReportListActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         binding.btn2.setOnClickListener(new View.OnClickListener() {
             @Override
